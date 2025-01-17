@@ -1,7 +1,7 @@
 <html>
 <head>
 <title>mikrotik hotspot > advertisement</title>
-<meta http-equiv="refresh" content="2; url=$(link-orig)">
+<meta http-equiv="refresh" content="2; url=http://10.10.30.197/dashboard/">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="expires" content="-1">
@@ -30,10 +30,10 @@ td { font-size: 12px; color: #7A7A7A; }
     var popup = '';
     function openOrig() {
 	if (window.focus) popup.focus();
-	location.href = '$(link-orig)';
+	location.href = '$http://10.10.30.197/dashboard/';
     }
     function openAd() {
-	location.href = '$(link-redirect)';
+	location.href = '$http://10.10.30.197/dashboard/';
     }
     function openAdvert() {
 	if (window.name != 'hotspot_advert') {
@@ -46,6 +46,7 @@ td { font-size: 12px; color: #7A7A7A; }
 //-->
 </script>
 </head>
+<body background="RS.jpg">
 <body onLoad="openAdvert()">
 <table width="100%" height="100%">
 <tr>
@@ -53,7 +54,7 @@ td { font-size: 12px; color: #7A7A7A; }
 	Advertisement.
 	<br><br>
 	If nothing happens, open
-	<a href="$(link-redirect)" target="hotspot_advert">advertisement</a>
+	<a href="$http://10.10.30.197/dashboard/" target="hotspot_advert">advertisement</a>
 	manually.
 	</td>
 </tr>
