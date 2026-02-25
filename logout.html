@@ -1,74 +1,198 @@
-<html>
+<!DOCTYPE html>
+<html lang="id">
 <head>
-<title>mikrotik hotspot > logout</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Logout Hotspot</title>
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="expires" content="-1">
-<style type="text/css">
 
-<!--
-textarea,input,select {
-	background-color: #FDFBFB;
-	border: 1px #BBBBBB solid;
-	padding: 2px;
-	margin: 1px;
-	font-size: 14px;
-	color: #808080;
+<style>
+
+/* ===== RESET ===== */
+*{
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
 }
 
-.tabula{
- 
-border-width: 1px; 
-border-collapse: collapse; 
-border-color: #c1c1c1; 
-background-color: transparent;
-font-family: verdana;
-font-size: 11px;
+/* ===== BACKGROUND ===== */
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    color:white;
+    padding:20px;
 }
 
-body{ color: #737373; font-size: 12px; font-family: verdana; }
+/* ===== CARD ===== */
+.card{
+    width:100%;
+    max-width:420px;
+    background:rgba(255,255,255,.12);
+    backdrop-filter:blur(14px);
+    border-radius:20px;
+    padding:30px 26px;
+    text-align:center;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.55),
+        inset 0 0 0 1px rgba(255,255,255,.15);
+    animation:fadeIn .6s ease;
+}
 
-a, a:link, a:visited, a:active { color: #AAAAAA; text-decoration: none; font-size: 12px; }
-a:hover { border-bottom: 1px dotted #c1c1c1; color: #AAAAAA; }
-img {border: none;}
-td { font-size: 12px; padding: 4px;}
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+}
 
--->
+/* ===== ICON CHECK ===== */
+.icon{
+    width:70px;
+    height:70px;
+    margin:0 auto 15px;
+    border-radius:50%;
+    background:linear-gradient(135deg,#00c9a7,#00e4c5);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    box-shadow:0 0 25px rgba(0,255,200,.5);
+}
+
+/* ===== TITLE ===== */
+.title{
+    font-size:22px;
+    font-weight:600;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    opacity:.85;
+    margin-bottom:20px;
+}
+
+/* ===== INFO LIST ===== */
+.info{
+    text-align:left;
+    margin-top:15px;
+    margin-bottom:20px;
+}
+
+.row{
+    display:flex;
+    justify-content:space-between;
+    padding:8px 0;
+    border-bottom:1px solid rgba(255,255,255,.15);
+    font-size:14px;
+}
+
+.row:last-child{
+    border-bottom:none;
+}
+
+.label{
+    opacity:.8;
+}
+
+.value{
+    font-weight:500;
+}
+
+/* ===== BUTTON ===== */
+input[type="submit"]{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    background:linear-gradient(135deg,#4facfe,#00c6ff);
+    color:white;
+    transition:.25s;
+}
+
+input[type="submit"]:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+/* MOBILE */
+@media(max-width:400px){
+    .row{
+        flex-direction:column;
+    }
+    .value{
+        margin-top:3px;
+    }
+}
+
 </style>
 </head>
 
 <body>
-<script language="JavaScript">
-<!--
-    function openLogin() {
-	if (window.name != 'hotspot_logout') return true;
-	open('$(link-login)', '_blank', '');
-	window.close();
-	return false;
-    }
-//-->
+
+<script>
+function openLogin(){
+    if(window.name!='hotspot_logout') return true;
+    open('$(link-login)','_blank','');
+    window.close();
+    return false;
+}
 </script>
 
-<table width="100%" height="100%">
-<body background="RS.jpg">
-<tr>
-<td align="center" valign="middle">
-<b>AI ROBOT SYSTEM V.80</b> <br><br>
-<table class="tabula" border="1">  
-<tr><td align="right">user name</td><td>$(username)</td></tr>
-<tr><td align="right">IP address</td><td>$(ip)</td></tr>
-<tr><td align="right">MAC address</td><td>$(mac)</td></tr>
-<tr><td align="right">session time</td><td>$(uptime)</td></tr>
+<div class="card">
+
+<div class="icon">✓</div>
+
+<div class="title">Anda Telah Logout</div>
+<div class="subtitle">Sistem Jaringan Koneksi Internet</div>
+
+<div class="info">
+
+<div class="row">
+<div class="label">User</div>
+<div class="value">$(username)</div>
+</div>
+
+<div class="row">
+<div class="label">IP Address</div>
+<div class="value">$(ip)</div>
+</div>
+
+<div class="row">
+<div class="label">MAC Address</div>
+<div class="value">$(mac)</div>
+</div>
+
+<div class="row">
+<div class="label">Durasi Koneksi</div>
+<div class="value">$(uptime)</div>
+</div>
+
 $(if session-time-left)
-<tr><td align="right">time left</td><td>$(session-time-left)</td></tr>
+<div class="row">
+<div class="label">Sisa Waktu</div>
+<div class="value">$(session-time-left)</div>
+</div>
 $(endif)
-<tr><td align="right">bytes up/down:</td><td>$(bytes-in-nice) / $(bytes-out-nice)</td></tr>
-</table>
-<br>
-<form action="$(link-login)" name="login" onSubmit="return openLogin()">
-<input type="submit" value="log in">
+
+<div class="row">
+<div class="label">Upload / Download</div>
+<div class="value">$(bytes-in-nice) / $(bytes-out-nice)</div>
+</div>
+
+</div>
+
+<form action="$(link-login)" method="post" onsubmit="return openLogin()">
+<input type="submit" value="Login Kembali">
 </form>
-</td>
-</table>
+
+</div>
+
 </body>
 </html>

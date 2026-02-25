@@ -1,65 +1,170 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
 <meta charset="utf-8">
-<title>Login</title>
+<title>Login Hotspot</title>
+
 <meta http-equiv="pragma" content="no-cache" />
 <meta http-equiv="expires" content="-1" />	
-<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
-<link rel="stylesheet" href="login.css" media="screen">
- 
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
+<style>
+/* ===== RESET ===== */
+*{
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+}
+
+/* ===== BACKGROUND ===== */
+body.login{
+    margin:0;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(circle at top,#4facfe,#00f2fe),
+        linear-gradient(120deg,#1f3c88,#0f2027);
+    overflow:hidden;
+}
+
+/* ===== GLASS CARD ===== */
+.vertical-form{
+    width:100%;
+    max-width:360px;
+    padding:35px 30px;
+    background:rgba(255,255,255,.15);
+    backdrop-filter:blur(12px);
+    border-radius:18px;
+    box-shadow:
+        0 15px 35px rgba(0,0,0,.35),
+        inset 0 0 0 1px rgba(255,255,255,.2);
+    color:#fff;
+    animation:fadeIn .8s ease;
+}
+
+/* ===== ANIMASI MASUK ===== */
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+}
+
+/* ===== TITLE ===== */
+legend{
+    font-size:22px;
+    font-weight:600;
+    text-align:center;
+    margin-bottom:25px;
+}
+
+/* ===== INPUT ===== */
+.vertical-form input.text,
+.vertical-form input.password{
+    width:100%;
+    padding:14px 15px;
+    margin-bottom:14px;
+    border-radius:10px;
+    border:none;
+    outline:none;
+    background:rgba(255,255,255,.85);
+    font-size:15px;
+    transition:.3s;
+}
+
+.vertical-form input::placeholder{
+    color:#666;
+}
+
+.vertical-form input:focus{
+    box-shadow:0 0 0 3px rgba(79,172,254,.5);
+}
+
+/* ===== BUTTON ===== */
+.vertical-form input[type="submit"]{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(135deg,#4facfe,#00c6ff);
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.vertical-form input[type="submit"]:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(0,0,0,.25);
+}
+
+/* ===== FOOTER ===== */
+.footer{
+    margin-top:20px;
+    font-size:12px;
+    text-align:center;
+    opacity:.8;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:420px){
+    .vertical-form{
+        margin:15px;
+        padding:28px 22px;
+    }
+}
+</style>
 </head>
-<body class='login'>
+
+<body class="login">
+
 $(if chap-id)
-	<form name="sendin" action="$(link-login-only)" method="post">
-		<input type="hidden" name="username" />
-		<input type="hidden" name="password" />
-		<input type="hidden" name="dst" value="$(link-orig)" />
-		<input type="hidden" name="popup" value="true" />
-	</form>
-	
-	<script type="text/javascript" src="/md5.js"></script>
-	<script type="text/javascript">
-	<!--
-	    function doLogin() {
-		document.sendin.username.value = document.login.username.value;
-		document.sendin.password.value = hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
-		document.sendin.submit();
-		return false;
-	    }
-	//-->
-	</script>
-$(endif)
-
-
-<form class="vertical-form" name="login" action="$(link-login-only)" method="post" background="#A03472"
-	$(if chap-id) onSubmit="return doLogin()" $(endif)>
-<input type="hidden" name="dst" value="$(link-orig)" />
-<input type="hidden" name="popup" value="true" />
-<div style="margin:0;padding:0;display:inline"></div>
-<legend>
-
-<aqui se puede escribir>
-</legend>
-<input name="username" class="text" type="text" value="$(username)" placeholder="Username" size="30" />
-<input autocomplete="off" class="password" name="password" type="text" label="false" placeholder="Password" size="20" />
-<input name="submit" type="submit" value="Login" />
-<div class='footer'>
-
-<br>
-<p>
-</p>
-</div>
+<form name="sendin" action="$(link-login-only)" method="post">
+    <input type="hidden" name="username" />
+    <input type="hidden" name="password" />
+    <input type="hidden" name="dst" value="$(link-orig)" />
+    <input type="hidden" name="popup" value="true" />
 </form>
 
-<script type="text/javascript">
-<!--
-  document.login.username.focus();
-//-->
+<script src="/md5.js"></script>
+<script>
+function doLogin(){
+    document.sendin.username.value=document.login.username.value;
+    document.sendin.password.value=
+        hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+    document.sendin.submit();
+    return false;
+}
 </script>
-<script type="text/javascript">
-document.oncontextmenu = function(){return false;}
+$(endif)
+
+<form class="vertical-form" name="login" action="$(link-login-only)" method="post"
+$(if chap-id) onsubmit="return doLogin()" $(endif)>
+
+<input type="hidden" name="dst" value="$(link-orig)" />
+<input type="hidden" name="popup" value="true" />
+
+<legend>AI ROBOT SYSTEM V80</legend>
+
+<input name="username" class="text" type="text"
+       value="$(username)" placeholder="Username" required />
+
+<input name="password" class="password" type="text"
+       placeholder="Password" required />
+
+<input type="submit" value="Login">
+
+<div class="footer">
+   Versi.80 © 2026<br>
+  
+</div>
+
+</form>
+
+<script>
+document.login.username.focus();
+document.oncontextmenu=function(){return false;}
 </script>
+
 </body>
 </html>

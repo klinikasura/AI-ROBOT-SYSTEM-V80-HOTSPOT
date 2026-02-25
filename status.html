@@ -7,37 +7,113 @@ $(endif)
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <meta http-equiv="pragma" content="no-cache">
 <meta http-equiv="expires" content="-1">
-<style type="text/css">
-<!--
-textarea,input,select {
-	background-color: #FDFBFB;
-	border: 1px #BBBBBB solid;
-	padding: 2px;
-	margin: 1px;
-	font-size: 14px;
-	color: #808080;
+<head>
+<title>Hotspot Status</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="-1">
+
+<style>
+
+/* ===== RESET ===== */
+*{
+    box-sizing:border-box;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
 }
 
-.tabula{
- 
-border-width: 1px; 
-border-collapse: collapse; 
-border-color: #c1c1c1; 
-background-color: transparent;
-font-family: verdana;
-font-size: 11px;
+/* ===== BACKGROUND ===== */
+body{
+    margin:0;
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:linear-gradient(135deg,#1f4c7a,#16324f);
+    color:white;
+    padding:15px;
 }
 
-body{ color: #737373; font-size: 12px; font-family: verdana; }
+/* ===== CARD ===== */
+.card{
+    width:100%;
+    max-width:420px;
+    background:rgba(255,255,255,0.12);
+    backdrop-filter:blur(14px);
+    border-radius:20px;
+    padding:25px;
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.5),
+        inset 0 0 0 1px rgba(255,255,255,.15);
+    animation:fadeIn .6s ease;
+}
 
-a, a:link, a:visited, a:active { color: #AAAAAA; text-decoration: none; font-size: 12px; }
-a:hover { border-bottom: 1px dotted #c1c1c1; color: #AAAAAA; }
-img {border: none;}
-td { font-size: 12px; padding: 4px;}
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
+}
 
--->
+/* ===== HEADER ===== */
+.title{
+    text-align:center;
+    font-size:20px;
+    font-weight:600;
+    margin-bottom:20px;
+}
+
+/* ===== INFO ROW ===== */
+.row{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+    font-size:15px;
+}
+
+.label{
+    opacity:.8;
+}
+
+.value{
+    font-weight:500;
+}
+
+/* ===== BUTTON ===== */
+button,
+input[type="submit"]{
+    width:100%;
+    margin-top:20px;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    background:linear-gradient(135deg,#ff5f6d,#ff2e43);
+    color:white;
+    transition:.25s;
+}
+
+button:hover,
+input[type="submit"]:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(0,0,0,.4);
+}
+
+/* ===== RESPONSIVE TEXT ===== */
+@media(max-width:400px){
+    .row{
+        flex-direction:column;
+        font-size:14px;
+    }
+    .value{
+        margin-top:3px;
+    }
+}
+
 </style>
-<script language="JavaScript">
+</head>
+<center><script language="JavaScript">
 <!--
 $(if advert-pending == 'yes')
     var popup = '';
@@ -56,7 +132,7 @@ $(endif)
 	return false;
     }
 //-->
-</script>
+</script></center>
 </head>
 <body background="RS.jpg">
 <body bottommargin="0" topmargin="0" leftmargin="0" rightmargin="0"
