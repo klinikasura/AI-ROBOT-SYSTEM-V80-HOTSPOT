@@ -12,123 +12,255 @@
 
 /* ===== RESET ===== */
 *{
-    box-sizing:border-box;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
 }
 
-/* ===== BACKGROUND ===== */
+/* ===== BACKGROUND ANIMASI ===== */
 body{
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(135deg,#0f2027,#203a43,#2c5364);
-    color:white;
-    padding:20px;
+margin:0;
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1f4c7a);
+background-size:400% 400%;
+animation:bgMove 12s ease infinite;
+color:white;
+padding:20px;
+overflow:hidden;
 }
 
-/* ===== CARD ===== */
+/* background bergerak */
+@keyframes bgMove{
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
+}
+
+/* floating glow */
+body::before,
+body::after{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:radial-gradient(circle,rgba(0,255,255,.25),transparent 70%);
+animation:float 18s linear infinite;
+}
+
+body::after{
+left:60%;
+top:30%;
+animation-delay:8s;
+}
+
+@keyframes float{
+0%{transform:translateY(0) rotate(0deg)}
+50%{transform:translateY(-100px) rotate(180deg)}
+100%{transform:translateY(0) rotate(360deg)}
+}
+
+/* ===== CARD 3D ===== */
 .card{
-    width:100%;
-    max-width:420px;
-    background:rgba(255,255,255,.12);
-    backdrop-filter:blur(14px);
-    border-radius:20px;
-    padding:30px 26px;
-    text-align:center;
-    box-shadow:
-        0 15px 40px rgba(0,0,0,.55),
-        inset 0 0 0 1px rgba(255,255,255,.15);
-    animation:fadeIn .6s ease;
+width:100%;
+max-width:420px;
+
+background:rgba(255,255,255,.10);
+
+backdrop-filter:blur(14px);
+
+border-radius:22px;
+
+padding:35px 28px;
+
+text-align:center;
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.6),
+inset 0 0 0 1px rgba(255,255,255,.15);
+
+transform-style:preserve-3d;
+
+transition:.6s;
+
+animation:cardIn .8s ease;
 }
 
-@keyframes fadeIn{
-    from{opacity:0;transform:translateY(20px)}
-    to{opacity:1;transform:translateY(0)}
+/* hover 3d */
+.card:hover{
+transform:rotateX(6deg) rotateY(-6deg) scale(1.03);
 }
 
-/* ===== ICON CHECK ===== */
+@keyframes cardIn{
+from{
+opacity:0;
+transform:translateY(40px) scale(.85);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+/* ===== ICON ===== */
 .icon{
-    width:70px;
-    height:70px;
-    margin:0 auto 15px;
-    border-radius:50%;
-    background:linear-gradient(135deg,#00c9a7,#00e4c5);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:34px;
-    box-shadow:0 0 25px rgba(0,255,200,.5);
+width:80px;
+height:80px;
+margin:0 auto 18px;
+border-radius:50%;
+background:linear-gradient(135deg,#00c9a7,#00f2c3);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:36px;
+box-shadow:0 0 30px rgba(0,255,200,.7);
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
 }
 
 /* ===== TITLE ===== */
 .title{
-    font-size:22px;
-    font-weight:600;
-    margin-bottom:8px;
+font-size:24px;
+font-weight:600;
+margin-bottom:8px;
 }
 
 .subtitle{
-    opacity:.85;
-    margin-bottom:20px;
+opacity:.85;
+margin-bottom:20px;
+font-size:14px;
 }
 
 /* ===== INFO LIST ===== */
 .info{
-    text-align:left;
-    margin-top:15px;
-    margin-bottom:20px;
+text-align:left;
+margin-top:15px;
+margin-bottom:20px;
 }
 
+/* row info */
 .row{
-    display:flex;
-    justify-content:space-between;
-    padding:8px 0;
-    border-bottom:1px solid rgba(255,255,255,.15);
-    font-size:14px;
+display:flex;
+justify-content:space-between;
+padding:9px 0;
+border-bottom:1px solid rgba(255,255,255,.15);
+font-size:14px;
 }
 
 .row:last-child{
-    border-bottom:none;
+border-bottom:none;
 }
 
 .label{
-    opacity:.8;
+opacity:.8;
 }
 
 .value{
-    font-weight:500;
+font-weight:500;
+}
+
+/* ===== WIFI SIGNAL ===== */
+.signal{
+display:flex;
+justify-content:center;
+gap:6px;
+margin-top:15px;
+}
+
+.signal span{
+width:6px;
+height:20px;
+background:#00f7ff;
+border-radius:3px;
+animation:signal 1.2s infinite;
+}
+
+.signal span:nth-child(2){animation-delay:.2s}
+.signal span:nth-child(3){animation-delay:.4s}
+.signal span:nth-child(4){animation-delay:.6s}
+
+@keyframes signal{
+0%{transform:scaleY(.3);opacity:.3}
+50%{transform:scaleY(1.2);opacity:1}
+100%{transform:scaleY(.3);opacity:.3}
 }
 
 /* ===== BUTTON ===== */
 input[type="submit"]{
-    width:100%;
-    margin-top:20px;
-    padding:14px;
-    border:none;
-    border-radius:14px;
-    font-size:16px;
-    font-weight:600;
-    cursor:pointer;
-    background:linear-gradient(135deg,#4facfe,#00c6ff);
-    color:white;
-    transition:.25s;
+
+width:100%;
+
+margin-top:22px;
+
+padding:14px;
+
+border:none;
+
+border-radius:14px;
+
+font-size:16px;
+
+font-weight:600;
+
+cursor:pointer;
+
+background:linear-gradient(135deg,#4facfe,#00c6ff);
+
+color:white;
+
+transition:.3s;
+
+position:relative;
+
+overflow:hidden;
+}
+
+/* shine effect */
+input[type="submit"]::before{
+content:"";
+position:absolute;
+top:-50%;
+left:-50%;
+width:200%;
+height:200%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,.6),
+transparent
+);
+transform:rotate(25deg);
+opacity:0;
+transition:.5s;
+}
+
+input[type="submit"]:hover::before{
+opacity:1;
+left:120%;
 }
 
 input[type="submit"]:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 25px rgba(0,0,0,.4);
+transform:translateY(-3px);
+box-shadow:0 10px 30px rgba(0,198,255,.5);
 }
 
 /* MOBILE */
 @media(max-width:400px){
-    .row{
-        flex-direction:column;
-    }
-    .value{
-        margin-top:3px;
-    }
+
+.row{
+flex-direction:column;
+}
+
+.value{
+margin-top:3px;
+}
+
 }
 
 </style>
@@ -138,10 +270,10 @@ input[type="submit"]:hover{
 
 <script>
 function openLogin(){
-    if(window.name!='hotspot_logout') return true;
-    open('$(link-login)','_blank','');
-    window.close();
-    return false;
+if(window.name!='hotspot_logout') return true;
+open('$(link-login)','_blank','');
+window.close();
+return false;
 }
 </script>
 
@@ -150,7 +282,14 @@ function openLogin(){
 <div class="icon">✓</div>
 
 <div class="title">Anda Telah Logout</div>
-<div class="subtitle">Sistem Jaringan Koneksi Internet</div>
+<div class="subtitle">Sistem Jaringan Internet</div>
+
+<div class="signal">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
 
 <div class="info">
 

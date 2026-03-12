@@ -5,10 +5,11 @@
 <title>Login Hotspot</title>
 
 <meta http-equiv="pragma" content="no-cache" />
-<meta http-equiv="expires" content="-1" />	
+<meta http-equiv="expires" content="-1"/>	
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
 <style>
+
 /* ===== RESET ===== */
 *{
     box-sizing:border-box;
@@ -22,83 +23,155 @@ body.login{
     display:flex;
     align-items:center;
     justify-content:center;
-    background:
-        radial-gradient(circle at top,#4facfe,#00f2fe),
-        linear-gradient(120deg,#1f3c88,#0f2027);
     overflow:hidden;
+    background:linear-gradient(-45deg,#1f3c88,#00c6ff,#4facfe,#0f2027);
+    background-size:400% 400%;
+    animation:bgMove 12s ease infinite;
 }
 
-/* ===== GLASS CARD ===== */
+/* BACKGROUND ANIMATION */
+@keyframes bgMove{
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+/* FLOATING LIGHT */
+body.login::before,
+body.login::after{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    background:radial-gradient(circle,rgba(255,255,255,.25),transparent 70%);
+    animation:float 14s infinite linear;
+}
+
+body.login::after{
+    left:60%;
+    top:40%;
+    animation-delay:6s;
+}
+
+@keyframes float{
+    0%{transform:translateY(0) rotate(0deg)}
+    50%{transform:translateY(-80px) rotate(180deg)}
+    100%{transform:translateY(0) rotate(360deg)}
+}
+
+/* ===== LOGIN CARD ===== */
 .vertical-form{
     width:100%;
     max-width:360px;
-    padding:35px 30px;
+    padding:40px 30px;
     background:rgba(255,255,255,.15);
-    backdrop-filter:blur(12px);
-    border-radius:18px;
+    backdrop-filter:blur(14px);
+    border-radius:20px;
     box-shadow:
-        0 15px 35px rgba(0,0,0,.35),
+        0 20px 50px rgba(0,0,0,.4),
         inset 0 0 0 1px rgba(255,255,255,.2);
+
     color:#fff;
+    transform-style:preserve-3d;
+    transition:transform .6s;
     animation:fadeIn .8s ease;
 }
 
-/* ===== ANIMASI MASUK ===== */
-@keyframes fadeIn{
-    from{opacity:0;transform:translateY(20px)}
-    to{opacity:1;transform:translateY(0)}
+/* 3D EFFECT */
+.vertical-form:hover{
+    transform:rotateX(5deg) rotateY(-5deg) scale(1.03);
 }
 
-/* ===== TITLE ===== */
+/* FADE IN */
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:translateY(40px) scale(.9);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0) scale(1);
+    }
+}
+
+/* TITLE */
 legend{
-    font-size:22px;
+    font-size:24px;
     font-weight:600;
     text-align:center;
     margin-bottom:25px;
+    letter-spacing:.5px;
 }
 
-/* ===== INPUT ===== */
+/* INPUT */
 .vertical-form input.text,
 .vertical-form input.password{
     width:100%;
-    padding:14px 15px;
+    padding:14px 16px;
     margin-bottom:14px;
-    border-radius:10px;
+    border-radius:12px;
     border:none;
     outline:none;
-    background:rgba(255,255,255,.85);
+    background:rgba(255,255,255,.9);
     font-size:15px;
     transition:.3s;
 }
 
 .vertical-form input::placeholder{
-    color:#666;
+    color:#777;
 }
 
 .vertical-form input:focus{
-    box-shadow:0 0 0 3px rgba(79,172,254,.5);
+    box-shadow:0 0 0 3px rgba(0,198,255,.5);
+    transform:scale(1.02);
 }
 
-/* ===== BUTTON ===== */
+/* BUTTON */
 .vertical-form input[type="submit"]{
     width:100%;
     padding:14px;
     border:none;
-    border-radius:12px;
-    background:linear-gradient(135deg,#4facfe,#00c6ff);
+    border-radius:14px;
+    background:linear-gradient(135deg,#00c6ff,#4facfe);
     color:white;
     font-size:16px;
     font-weight:600;
     cursor:pointer;
     transition:.3s;
+    position:relative;
+    overflow:hidden;
+}
+
+/* NEON EFFECT */
+.vertical-form input[type="submit"]::before{
+    content:"";
+    position:absolute;
+    top:-50%;
+    left:-50%;
+    width:200%;
+    height:200%;
+    background:linear-gradient(
+        120deg,
+        transparent,
+        rgba(255,255,255,.6),
+        transparent
+    );
+    transform:rotate(25deg);
+    opacity:0;
+    transition:.5s;
+}
+
+.vertical-form input[type="submit"]:hover::before{
+    opacity:1;
+    left:120%;
 }
 
 .vertical-form input[type="submit"]:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 20px rgba(0,0,0,.25);
+    transform:translateY(-3px);
+    box-shadow:0 10px 30px rgba(0,198,255,.5);
 }
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 .footer{
     margin-top:20px;
     font-size:12px;
@@ -106,13 +179,14 @@ legend{
     opacity:.8;
 }
 
-/* ===== RESPONSIVE ===== */
+/* RESPONSIVE */
 @media(max-width:420px){
     .vertical-form{
         margin:15px;
         padding:28px 22px;
     }
 }
+
 </style>
 </head>
 
@@ -120,20 +194,20 @@ legend{
 
 $(if chap-id)
 <form name="sendin" action="$(link-login-only)" method="post">
-    <input type="hidden" name="username" />
-    <input type="hidden" name="password" />
-    <input type="hidden" name="dst" value="$(link-orig)" />
-    <input type="hidden" name="popup" value="true" />
+<input type="hidden" name="username"/>
+<input type="hidden" name="password"/>
+<input type="hidden" name="dst" value="$(link-orig)"/>
+<input type="hidden" name="popup" value="true"/>
 </form>
 
 <script src="/md5.js"></script>
 <script>
 function doLogin(){
-    document.sendin.username.value=document.login.username.value;
-    document.sendin.password.value=
-        hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
-    document.sendin.submit();
-    return false;
+document.sendin.username.value=document.login.username.value;
+document.sendin.password.value=
+hexMD5('$(chap-id)' + document.login.password.value + '$(chap-challenge)');
+document.sendin.submit();
+return false;
 }
 </script>
 $(endif)
@@ -141,22 +215,21 @@ $(endif)
 <form class="vertical-form" name="login" action="$(link-login-only)" method="post"
 $(if chap-id) onsubmit="return doLogin()" $(endif)>
 
-<input type="hidden" name="dst" value="$(link-orig)" />
-<input type="hidden" name="popup" value="true" />
+<legend>myROBOT-V80</legend>
 
-<legend>AI ROBOT SYSTEM V80</legend>
+<input type="hidden" name="dst" value="$(link-orig)"/>
+<input type="hidden" name="popup" value="true"/>
 
 <input name="username" class="text" type="text"
-       value="$(username)" placeholder="Username" required />
+value="$(username)" placeholder="Username" required/>
 
 <input name="password" class="password" type="text"
-       placeholder="Password" required />
+placeholder="Password" required/>
 
 <input type="submit" value="Login">
 
 <div class="footer">
-   Versi.80 © 2026<br>
-  
+© Versi 8.0
 </div>
 
 </form>

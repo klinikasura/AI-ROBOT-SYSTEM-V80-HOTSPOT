@@ -3,9 +3,9 @@
 <html>
 <head>
 
-<title>Conectando... > redirect</title>
+<title>Connecting... Redirect</title>
 
-<meta http-equiv="refresh" content="2; url=https://raw.githubusercontent.com/klinikasura/APLIKASI-V80/refs/heads/main/BG/ROBOT-VERSI-80.gif">
+<meta http-equiv="refresh" content="4; url=https://raw.githubusercontent.com/klinikasura/APLIKASI-V80/refs/heads/main/BG/ROBOT-VERSI-80.gif">
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
 <meta http-equiv="pragma" content="no-cache">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,103 +15,197 @@
 
 /* ===== RESET ===== */
 *{
-    box-sizing:border-box;
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
+box-sizing:border-box;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial;
 }
 
-/* ===== BACKGROUND ANIMASI ===== */
 body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1f4c7a);
-    background-size:400% 400%;
-    animation:gradientMove 12s ease infinite;
-    color:white;
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
+background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1f4c7a);
+background-size:400% 400%;
+animation:gradientMove 14s ease infinite;
+color:white;
 }
 
-/* animasi background */
+/* BACKGROUND ANIMATION */
 @keyframes gradientMove{
-    0%{background-position:0% 50%}
-    50%{background-position:100% 50%}
-    100%{background-position:0% 50%}
+0%{background-position:0% 50%}
+50%{background-position:100% 50%}
+100%{background-position:0% 50%}
 }
 
-/* ===== KARTU TENGAH ===== */
+/* FLOATING LIGHTS */
+body::before,
+body::after{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:radial-gradient(circle,rgba(0,255,255,.25),transparent 70%);
+animation:float 18s linear infinite;
+}
+
+body::after{
+left:60%;
+top:30%;
+animation-delay:8s;
+}
+
+@keyframes float{
+0%{transform:translateY(0) rotate(0deg)}
+50%{transform:translateY(-100px) rotate(180deg)}
+100%{transform:translateY(0) rotate(360deg)}
+}
+
+/* ===== 3D CARD ===== */
 .container{
-    text-align:center;
+
+padding:50px 40px;
+
+background:rgba(255,255,255,.08);
+
+border-radius:22px;
+
+backdrop-filter:blur(14px);
+
+box-shadow:
+0 20px 60px rgba(0,0,0,.6),
+inset 0 0 0 1px rgba(255,255,255,.15);
+
+text-align:center;
+
+transform-style:preserve-3d;
+
+animation:cardIn 1s ease;
+transition:.6s;
 }
 
-/* ===== SPINNER MODERN ===== */
+.container:hover{
+transform:rotateX(6deg) rotateY(-6deg) scale(1.04);
+}
+
+@keyframes cardIn{
+from{
+opacity:0;
+transform:translateY(40px) scale(.8);
+}
+to{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+}
+
+/* ===== SPINNER 3D ===== */
 .loader{
-    width:90px;
-    height:90px;
-    border-radius:50%;
-    border:6px solid rgba(255,255,255,.2);
-    border-top:6px solid #00eaff;
-    animation:spin .9s linear infinite;
-    margin:auto;
-    position:relative;
+width:95px;
+height:95px;
+border-radius:50%;
+border:6px solid rgba(255,255,255,.2);
+border-top:6px solid #00f7ff;
+animation:spin .8s linear infinite;
+margin:auto;
+position:relative;
 }
 
-/* glow */
-.loader::after{
-    content:"";
-    position:absolute;
-    inset:-8px;
-    border-radius:50%;
-    box-shadow:0 0 25px rgba(0,234,255,.7);
+.loader::before{
+content:"";
+position:absolute;
+inset:-10px;
+border-radius:50%;
+box-shadow:0 0 30px rgba(0,247,255,.9);
 }
 
-/* animasi putar */
 @keyframes spin{
-    to{transform:rotate(360deg);}
+to{transform:rotate(360deg)}
 }
 
-/* TEXT UTAMA */
+/* ===== TITLE ===== */
 .loading-text{
-    margin-top:25px;
-    font-size:20px;
-    font-weight:600;
-    letter-spacing:.5px;
+margin-top:28px;
+font-size:22px;
+font-weight:600;
+letter-spacing:.5px;
 }
 
-/* SUBTEXT */
-.subtext{
-    margin-top:10px;
-    font-size:14px;
-    opacity:.85;
-}
-
-/* TITIK BERKEDIP */
+/* ===== DOT ANIMATION ===== */
 .dots::after{
-    content:'';
-    animation:dots 1.5s steps(4,end) infinite;
-}
-@keyframes dots{
-    0%{content:'';}
-    25%{content:'.';}
-    50%{content:'..';}
-    75%{content:'...';}
+content:'';
+animation:dots 1.5s steps(4,end) infinite;
 }
 
-/* MOBILE */
+@keyframes dots{
+0%{content:''}
+25%{content:'.'}
+50%{content:'..'}
+75%{content:'...'}
+}
+
+/* ===== SUBTEXT ===== */
+.subtext{
+margin-top:12px;
+font-size:14px;
+opacity:.85;
+}
+
+/* ===== SIGNAL ANIMATION ===== */
+.signal{
+margin-top:20px;
+display:flex;
+justify-content:center;
+gap:6px;
+}
+
+.signal span{
+width:6px;
+height:20px;
+background:#00f7ff;
+border-radius:3px;
+animation:signal 1.2s infinite;
+}
+
+.signal span:nth-child(2){animation-delay:.2s}
+.signal span:nth-child(3){animation-delay:.4s}
+.signal span:nth-child(4){animation-delay:.6s}
+
+@keyframes signal{
+0%{transform:scaleY(.3);opacity:.3}
+50%{transform:scaleY(1.2);opacity:1}
+100%{transform:scaleY(.3);opacity:.3}
+}
+
+/* ===== MOBILE ===== */
 @media(max-width:420px){
-    .loading-text{font-size:18px;}
-    .subtext{font-size:13px;}
+
+.container{
+margin:20px;
+padding:35px 25px;
+}
+
+.loading-text{
+font-size:19px;
+}
+
 }
 
 </style>
 
 <script language="JavaScript">
 function startClock() {
+
 $(if popup == 'true')
-    open('$(link-status)', 'hotspot_status',
-    'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=290');
+open('$(link-status)', 'hotspot_status',
+'toolbar=0,location=0,directories=0,status=0,menubars=0,resizable=1,width=290');
 $(endif)
-location.href = 'https://raw.githubusercontent.com/klinikasura/APLIKASI-V80/refs/heads/main/BG/ROBOT-VERSI-80.gif',500;
+
+setTimeout(function(){
+location.href="https://raw.githubusercontent.com/klinikasura/APLIKASI-V80/refs/heads/main/BG/ROBOT-VERSI-80.gif";
+},4000);
+
 }
 </script>
 
@@ -131,8 +225,14 @@ Menghubungkan Ke Sistem Jaringan
 Robot Sedang Menyiapkan Akses Internet Anda
 </div>
 
+<div class="signal">
+<span></span>
+<span></span>
+<span></span>
+<span></span>
+</div>
+
 </div>
 
 </body>
 </html>
-
