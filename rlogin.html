@@ -28,17 +28,20 @@ $(if http-header == "Location")$(link-redirect)$(endif)
 
 /* ===== BACKGROUND ANIMASI ===== */
 body{
-    margin:0;
-    height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    background:linear-gradient(-45deg,#0f2027,#203a43,#2c5364,#1f4c7a);
-    background-size:400% 400%;
-    animation:gradientMove 12s ease infinite;
-    color:white;
-}
+margin:0;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+overflow:hidden;
 
+/* BACKGROUND BIRU MUDA */
+background:linear-gradient(-45deg,#bdeaff,#e6f7ff,#c8f0ff,#a9e6ff);
+background-size:400% 400%;
+animation:gradientMove 16s ease infinite;
+
+color:#004c6d;
+}
 /* animasi background */
 @keyframes gradientMove{
     0%{background-position:0% 50%}
